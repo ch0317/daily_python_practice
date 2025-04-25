@@ -48,6 +48,27 @@ class Solution:
         return results
 
 
+class Solution_leet:
+    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        if not root:
+            return []
+
+        result = []
+        queue = deque([root])
+
+        while queue:
+            level_size = len(queue)
+            level = []
+            for _ in range(level_size):
+                node = queue.popleft()
+                level.append(node.val)
+                if node.left:
+                    queue.append(node.left)
+                if node.right:
+                    queue.append(node.right)
+            result.append(level)
+
+        return result
 
 # 辅助函数：将列表构建为二叉树
 def build_tree_from_list(values: List[Optional[int]]) -> Optional[TreeNode]:
